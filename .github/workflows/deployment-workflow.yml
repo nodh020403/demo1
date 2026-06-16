@@ -14,4 +14,4 @@ jobs:
         run: |
           chmod +x /home/ubuntu/actions-runner/deployment.sh
           
-          /home/ubuntu/actions-runner/deployment.sh
+          /home/ubuntu/actions-runner/deployment.sh "ghcr.io/nodh020403/demo1:latest" "demo1-backend" "80"
