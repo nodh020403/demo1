@@ -1,15 +1,15 @@
-#name: Build and release docker image # 도커 파일로 이미지 빌드후, GHCR에 업로드
-#
-## docker bulid .
-#on:
-#  push:
-#    branches:
-#      - main
-#env:
-#  REGISTRY: ghcr.io
-#
-## tagging -> build -> release
-#jobs:
+name: Build and release docker image # 도커 파일로 이미지 빌드후, GHCR에 업로드
+
+# docker bulid .
+on:
+ push:
+   branches:
+     - main
+env:
+ REGISTRY: ghcr.io
+
+# tagging -> build -> release
+jobs:
 #  tagging:
 #    name: 태깅
 #    runs-on: ubuntu-latest
@@ -39,7 +39,7 @@
 
     permissions:
       contents: read
-      packages: read
+      packages: write
       attestations: write
       id-token: write
 
