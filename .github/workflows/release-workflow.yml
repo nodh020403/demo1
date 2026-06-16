@@ -67,7 +67,7 @@
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: ${{env.REGISTRY}}/${{github.actor}}/${{github.repository}}
+          images: ${{env.REGISTRY}}/${{github.repository}}
           tags:
             type=sha
             type=raw,value=latest
