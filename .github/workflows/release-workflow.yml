@@ -1,29 +1,35 @@
-name: Build and release docker image # 도커 파일로 이미지 빌드후, GHCR에 업로드
-
-# docker bulid .
-on:
-  push:
-    branches:
-      - main
-env:
-  REGISTRY: ghcr.io
-
-# tagging -> build -> release
-jobs:
-  tagging:
-    name: 태깅
-    runs-on: ubuntu-latest
-    outputs:
-      tag_name: ${{steps.tag_version.outputs.new_version}}
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: 버저닝 및 태깅
-        id: tag_version
-        uses: mathieudutour/github-tag-action@v6.2
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+#name: Build and release docker image # 도커 파일로 이미지 빌드후, GHCR에 업로드
+#
+## docker bulid .
+#on:
+#  push:
+#    branches:
+#      - main
+#env:
+#  REGISTRY: ghcr.io
+#
+## tagging -> build -> release
+#jobs:
+#  tagging:
+#    name: 태깅
+#    runs-on: ubuntu-latest
+#    outputs:
+#      tag_name: ${{steps.tag_version.outputs.new_version}}
+#
+#    steps:
+#      - uses: actions/checkout@v6
+#
+#      - name: 버저닝 및 태깅
+#        id: tag_version
+#        uses: mathieudutour/github-tag-action@v6.2
+#        with:
+#          github_token: ${{secrets.GITHUB_TOKEN}}
+#
+#      - name: 릴리즈
+#        uses: nicpollo/release-action@v1
+#        with:
+#          tag: ${{steps.tag_version.outputs.new_tag}}
+#          name: ${{steps.tag_version.outputs.new_tag}}
 
   build-image:
     name: 도커 이미지 빌드
@@ -64,7 +70,6 @@ jobs:
           images: ${{env.REGISTRY}}/${{github.actor}}/${{github.repository}}
           tags:
             type=sha
-            type=raw,value=${{needs.tagging.outputs.tag_name}}
             type=raw,value=latest
 
       - name: 빌드 및 이미지 푸시
