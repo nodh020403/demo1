@@ -6,13 +6,12 @@ on:
       - main
 
 jobs:
-
   deploy:
-
-    runs-on: self-hosted #Github runners
+    runs-on: self-hosted  # GitHub Actions Self-hosted Runner
 
     steps:
-    - name: Hello, World!
-      run: | 
-        chmod +x /home/ubuntu/deployment.sh &&
-        /home/ubuntu/deployment.sh
+      - name: Execute Deployment Script
+        run: |
+          chmod +x /home/ubuntu/actions-runner/deployment.sh
+          
+          /home/ubuntu/actions-runner/deployment.sh
