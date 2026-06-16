@@ -4,7 +4,8 @@ name: Build and release docker image # 도커 파일로 이미지 빌드후, GHC
 on:
  push:
    branches:
-     - main
+#     - main
+     - dev
 env:
  REGISTRY: ghcr.io
 
